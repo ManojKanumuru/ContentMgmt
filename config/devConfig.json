@@ -1,0 +1,27 @@
+{
+	"dbUrl":"mongodb://localhost:27017",
+	"env" : "",
+	"links": {
+		"devConfig" : {
+			"approvalLink" : "http://localhost:3000/api/user/approveUser?code="
+		},
+		"testConfig" : {
+
+		},
+		"prodConfig" : {
+
+		}
+	},
+	"dbs" : {
+		"ContentManagement": "ContentManagement"
+	},
+	"collections" : {
+		"ContentManagement": {
+			"users"		: "users",
+			"categories": "categories",
+			"products" 	: "products",
+			"productsAudit": "productsAudit",
+			"batchRequests": "batchRequests"
+        }
+    }
+}
