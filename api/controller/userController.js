@@ -287,3 +287,35 @@ exports.getAdminCreatedUserList = function(req, res){
 		return responses.sendError(res, err, constants.failure);
 	});
 }
+
+exports.getUserDetails = function(req, res){
+
+	let request = req.query;
+
+	Promise.coroutine(function*() {
+
+		if(!request.userId){
+			return responses.sendError(res, ' userId is mandatory', constants.failure);
+		}
+
+		let userDetails = yield userDal.userDataById(request);
+
+		return responses.sendResponse(res, constants.messages.success, constants.success, userDetails);
+	})().catch(function(err){
+		return responses.sendError(res, err, constants.failure);
+	});
+}
+
+exports.getSuperAdminDetails = function(req, res){
+
+	let request = req.query;
+
+	Promise.coroutine(function*() {
+
+		let userDetails = yield userDal.getDataByRole(request);
+
+		return responses.sendResponse(res, constants.messages.success, constants.success, userDetails);
+	})().catch(function(err){
+		return responses.sendError(res, err, constants.failure);
+	});
+}

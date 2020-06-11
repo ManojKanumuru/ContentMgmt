@@ -287,10 +287,10 @@ exports.userDataById = function(params){
                 'code': 1, 
                 'codeValidity': 1, 
                 'status': 1, 
-                'userRole': 1
-                // 'userId': 1,
-                // 'officialEmail': 1,
-                // 'status': 1
+                'userRole': 1,
+                'officialEmail': 1,
+                'firstName': 1,
+                'lastName': 1
             };
         
         baseQuery.readData(queryObj).then(function(category){
@@ -355,4 +355,29 @@ exports.adminCreatedUsers = function(params){
             return reject(error);
         });
     })      
+}
+
+exports.getDataByRole = function(params){
+ 
+    return new Promise(function(resolve, reject) {
+        
+        let queryObj = {};
+            queryObj.dbName = 'ContentManagement';
+            queryObj.collectionName = 'users';
+            queryObj.condition = {
+                userRole : params.userRole.toLowerCase()
+            };
+            queryObj.querySelect = {
+                '_id': 0,
+                'status': 1, 
+                'userRole': 1,
+                'officialEmail': 1
+            };
+        
+        baseQuery.readData(queryObj).then(function(category){
+            return resolve(category);
+        }).catch(function(error){
+            return reject(error);
+        });
+    })
 }

@@ -37,5 +37,9 @@ module.exports = function(app){
 
 	apiRoutes.get('/user/adminCreatedUsers', userController.getAdminCreatedUserList);
 
+	apiRoutes.get('/user/getUserDetails', userController.getUserDetails);
+
+	apiRoutes.get('/user/adminUserDetails', userController.getSuperAdminDetails);
+
 	app.use('/api', apiRoutes);
 }

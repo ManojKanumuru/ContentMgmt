@@ -4,7 +4,8 @@
   "description": "Demo Application for Content Management System",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "cmd" : "NODE_ENV=devConfig node app.js"
   },
   "author": "Manoj",
   "license": "ISC",

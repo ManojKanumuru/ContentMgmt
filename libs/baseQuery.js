@@ -66,38 +66,9 @@ exports.updateData = function (obj) {
                         }
                     });
                 }else{
-                    return resolve({message : constants.noUpdate});
+                    return resolve({message : constants.messages.noUpdate});
                 }
             }
         });
     })
-};
-
-exports.removeData = function (obj) {
-   
-  console.log("obj is in removeData");
-  
-  return new Promise (function(resolve, reject) {
-    var cmsDB = globalVar.cmsDB();
-    var db = cmsDB.db(obj.dbName);
-    if((obj.condition.hasOwnProperty('taskId') && obj.condition.taskId) ||
-        (obj.condition.hasOwnProperty('userName') && obj.condition.userName)){
-        db.collection(obj.collectionName).deleteOne(obj.condition, function(err, data){
-            if (err) {
-                return reject(err);
-            } else {
-                console.log("delete data success ---- ", data.result);
-                if(data.result && data.result.n && data.result.n === 1){
-                    console.log("inside if delete check ::::");
-                    return resolve({message : 'delete success'});
-                }else{
-                    console.log("inside else delete check ::::");
-                    return resolve({message : 'no task to delete'});
-                }
-            }
-        })
-    }else{
-        return reject('cannot delete record');
-    }
-  });
 };
